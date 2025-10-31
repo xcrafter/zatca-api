@@ -1,0 +1,7 @@
+.env
+node_modules
+debug
+config
+logs
+postgres-data
+.DS_Store

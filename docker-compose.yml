@@ -1,0 +1,73 @@
+version: "3.8"
+
+# Docker Compose configuration for ZATCA App with Remote PostgreSQL
+# Use this when connecting to an external/remote PostgreSQL database
+
+services:
+  # ZATCA Application
+  app:
+    image: xcrafter88/zatca-app:latest
+    container_name: zatca-app
+    environment:
+      # Remote Database Configuration
+      DATABASE_HOST: ${DATABASE_HOST}
+      DATABASE_PORT: ${DATABASE_PORT:-5432}
+      DATABASE_USERNAME: ${DATABASE_USERNAME}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      DATABASE_NAME: ${DATABASE_NAME}
+
+      # Security Configuration
+      ENCRYPTION_KEY: ${ENCRYPTION_KEY}
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_EXPIRES_IN: ${JWT_EXPIRES_IN:-24h}
+
+      # Admin Configuration
+      ADMIN_USERNAME: ${ADMIN_USERNAME:-admin}
+      ADMIN_PASSWORD_HASH: ${ADMIN_PASSWORD_HASH}
+
+      # Application Configuration
+      NODE_ENV: ${NODE_ENV:-production}
+      PORT: ${PORT:-3000}
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+
+      # ZATCA API Configuration
+      ZATCA_ENVIRONMENT: ${ZATCA_ENVIRONMENT:-sandbox}
+      ZATCA_SANDBOX_URL: ${ZATCA_SANDBOX_URL:-https://gw-fatoora.zatca.gov.sa/e-invoicing/developer-portal}
+      ZATCA_PRODUCTION_URL: ${ZATCA_PRODUCTION_URL:-https://gw-fatoora.zatca.gov.sa/e-invoicing/core}
+      ZATCA_DEBUG_MODE: ${ZATCA_DEBUG_MODE:-false}
+
+      # Optional
+      ENABLE_DEBUG_FILES: ${ENABLE_DEBUG_FILES:-false}
+
+    ports:
+      - "${PORT:-3000}:3000"
+
+    volumes:
+      # Optional: Mount debug folder for development
+      # - ./debug:/app/debug
+
+      # Optional: Custom configuration
+      # - ./config:/app/config:ro
+
+    # healthcheck:
+    #   test:
+    #     [
+    #       "CMD",
+    #       "wget",
+    #       "--quiet",
+    #       "--tries=1",
+    #       "--spider",
+    #       "http://localhost:3000/",
+    #     ]
+    #   interval: 30s
+    #   timeout: 10s
+    #   retries: 3
+    #   start_period: 40s
+
+    restart: unless-stopped
+# Note: No PostgreSQL service included - using remote database
+# Make sure your remote database:
+# 1. Is accessible from this host
+# 2. Has the database created (e.g., 'zatca')
+# 3. Firewall allows connections on port 5432 (or your custom port)
+# 4. PostgreSQL is configured to accept remote connections (postgresql.conf, pg_hba.conf)
