@@ -325,6 +325,7 @@ Need help with production deployment or hosting setup?
 
 We provide assisted guidance for:
 
+- Full Code Access
 - Production environment setup and configuration
 - Cloud hosting deployment (AWS, Azure, Google Cloud)
 - Database setup and optimization
