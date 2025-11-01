@@ -1,0 +1,92 @@
+{
+  "$schema": "https://railway.app/railway.schema.json",
+  "build": {
+    "builder": "DOCKERFILE",
+    "dockerfilePath": "Dockerfile"
+  },
+  "deploy": {
+    "numReplicas": 1,
+    "restartPolicyType": "ON_FAILURE",
+    "restartPolicyMaxRetries": 10,
+    "healthcheckPath": "/",
+    "healthcheckTimeout": 100
+  },
+  "environments": {
+    "production": {
+      "variables": {
+        "DATABASE_HOST": {
+          "description": "PostgreSQL database hostname (e.g., your-db.amazonaws.com)",
+          "required": true
+        },
+        "DATABASE_PORT": {
+          "description": "PostgreSQL database port",
+          "default": "5432"
+        },
+        "DATABASE_USERNAME": {
+          "description": "PostgreSQL database username",
+          "required": true
+        },
+        "DATABASE_PASSWORD": {
+          "description": "PostgreSQL database password",
+          "required": true
+        },
+        "DATABASE_NAME": {
+          "description": "PostgreSQL database name",
+          "default": "zatca"
+        },
+        "ENCRYPTION_KEY": {
+          "description": "64-character hex encryption key (generate with: openssl rand -hex 32)",
+          "required": true
+        },
+        "JWT_SECRET": {
+          "description": "JWT secret key for authentication (random secure string)",
+          "required": true
+        },
+        "JWT_EXPIRES_IN": {
+          "description": "JWT token expiration time",
+          "default": "24h"
+        },
+        "ADMIN_USERNAME": {
+          "description": "Admin username for login",
+          "default": "admin"
+        },
+        "ADMIN_PASSWORD_HASH": {
+          "description": "Bcrypt hash of admin password (use bcrypt with 10 rounds)",
+          "required": true
+        },
+        "NODE_ENV": {
+          "description": "Node environment",
+          "default": "production"
+        },
+        "PORT": {
+          "description": "Application port",
+          "default": "3000"
+        },
+        "LOG_LEVEL": {
+          "description": "Logging level",
+          "default": "info"
+        },
+        "ZATCA_ENVIRONMENT": {
+          "description": "ZATCA environment: sandbox, simulation, or production",
+          "default": "sandbox"
+        },
+        "ZATCA_SANDBOX_URL": {
+          "description": "ZATCA sandbox API URL",
+          "default": "https://gw-fatoora.zatca.gov.sa/e-invoicing/developer-portal"
+        },
+        "ZATCA_PRODUCTION_URL": {
+          "description": "ZATCA production API URL",
+          "default": "https://gw-fatoora.zatca.gov.sa/e-invoicing/core"
+        },
+        "ZATCA_DEBUG_MODE": {
+          "description": "Enable ZATCA debug mode",
+          "default": "false"
+        },
+        "ENABLE_DEBUG_FILES": {
+          "description": "Enable debug file generation",
+          "default": "false"
+        }
+      }
+    }
+  }
+}

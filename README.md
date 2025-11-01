@@ -47,6 +47,20 @@ Deploy quickly to cloud platforms with a single click:
 3. Set your database credentials and secrets via Cloud Console or Secret Manager
 4. The service will be accessible via a Cloud Run URL
 
+### Deploy to Railway
+
+[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/new/template?template=https://github.com/xcrafter/zatca-api)
+
+**Note:** Railway deployment steps:
+
+1. Click the button and sign in to Railway
+2. Railway will automatically provision the service
+3. Add environment variables in the Railway dashboard:
+   - Database credentials (DATABASE_HOST, DATABASE_PORT, DATABASE_USERNAME, DATABASE_PASSWORD, DATABASE_NAME)
+   - Generate ENCRYPTION_KEY (64 characters) and JWT_SECRET
+   - Set ADMIN_PASSWORD_HASH (bcrypt hash of your admin password)
+4. Railway will provide a public URL for your deployment
+
 **Prerequisites for Cloud Deploy:**
 
 - A remote PostgreSQL database (AWS RDS, Google Cloud SQL, Azure Database, etc.)
