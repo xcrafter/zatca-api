@@ -32,13 +32,13 @@ Deploy quickly to cloud platforms with a single click:
 
 ### Deploy to Render
 
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/YOUR_GITHUB_USERNAME/zatca-api)
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/xcrafter/zatca-api)
 
 **Note:** You'll need to provide your PostgreSQL database credentials during setup. Render will automatically generate secure keys for `ENCRYPTION_KEY` and `JWT_SECRET`.
 
 ### Deploy to Google Cloud Run
 
-[![Run on Google Cloud](https://deploy.cloud.run/button.svg)](https://deploy.cloud.run/?git_repo=https://github.com/YOUR_GITHUB_USERNAME/zatca-api)
+[![Run on Google Cloud](https://deploy.cloud.run/button.svg)](https://deploy.cloud.run/?git_repo=https://github.com/xcrafter/zatca-api)
 
 **Note:** After clicking the button:
 
