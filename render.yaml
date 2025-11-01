@@ -23,10 +23,8 @@ services:
       # Security Configuration (Auto-generated recommended)
       - key: ENCRYPTION_KEY
         generateValue: true
-        sync: false
       - key: JWT_SECRET
         generateValue: true
-        sync: false
       - key: JWT_EXPIRES_IN
         value: 24h
 
