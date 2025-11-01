@@ -1,0 +1,36 @@
+# Git
+.git
+.gitignore
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Documentation
+README.md
+*.md
+
+# CI/CD and deployment configs
+.github
+railway.json
+railway.toml
+render.yaml
+app.yaml
+cloudrun.yaml
+docker-compose.yml
+
+# Scripts
+setup-deployment.sh
+setup-deployment.bat
+
+# Node modules (if present)
+node_modules
+npm-debug.log
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
