@@ -236,7 +236,7 @@ ZATCA_ENVIRONMENT=production
 docker-compose ps
 
 # Check if app is responding
-curl http://localhost:3000/
+curl http://localhost:3000/health
 
 # View application logs
 docker-compose logs -f app

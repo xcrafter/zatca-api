@@ -6,7 +6,7 @@ services:
     dockerContext: .
     plan: starter
     region: oregon
-    healthCheckPath: /
+    healthCheckPath: /health
     envVars:
       # Database Configuration (Required)
       - key: DATABASE_HOST
