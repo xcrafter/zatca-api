@@ -28,46 +28,13 @@ This application requires a **Remote PostgreSQL** database connection:
 
 ## One-Click Deploy
 
-Deploy quickly to cloud platforms with a single click:
-
-### Deploy to Render
+Deploy quickly to cloud platforms:
 
 [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/xcrafter/zatca-api)
-
-**Note:** You'll need to provide your PostgreSQL database credentials during setup. Render will automatically generate secure keys for `ENCRYPTION_KEY` and `JWT_SECRET`.
-
-### Deploy to Google Cloud Run
-
 [![Run on Google Cloud](https://deploy.cloud.run/button.svg)](https://deploy.cloud.run/?git_repo=https://github.com/xcrafter/zatca-api)
-
-**Note:** After clicking the button:
-
-1. Select your Google Cloud project
-2. The app will deploy using the `cloudrun.yaml` configuration
-3. Set your database credentials and secrets via Cloud Console or Secret Manager
-4. The service will be accessible via a Cloud Run URL
-
-### Deploy to Railway
-
 [![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/new/template?template=https://github.com/xcrafter/zatca-api)
 
-**Note:** Railway deployment steps:
-
-1. Click the button and sign in to Railway
-2. Railway will automatically provision the service
-3. Add environment variables in the Railway dashboard:
-   - Database credentials (DATABASE_HOST, DATABASE_PORT, DATABASE_USERNAME, DATABASE_PASSWORD, DATABASE_NAME)
-   - Generate ENCRYPTION_KEY (64 characters) and JWT_SECRET
-   - Set ADMIN_PASSWORD_HASH (bcrypt hash of your admin password)
-4. Railway will provide a public URL for your deployment
-
-**Prerequisites for Cloud Deploy:**
-
-- A remote PostgreSQL database (AWS RDS, Google Cloud SQL, Azure Database, etc.)
-- Database should be accessible from the cloud platform
-- Admin password must be hashed (use bcrypt with 10 rounds)
-
-**Alternative:** For more control, follow the [Quick Start](#quick-start) guide below for local deployment or custom cloud setup.
+**Note:** You'll need a remote PostgreSQL database ready before deployment. For local deployment or custom setup, follow the [Quick Start](#quick-start) guide below.
 
 ---
 
