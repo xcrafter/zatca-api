@@ -1,0 +1,72 @@
+# Cloud Run deployment configuration
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: zatca-api
+  labels:
+    cloud.googleapis.com/location: us-central1
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/minScale: "1"
+        autoscaling.knative.dev/maxScale: "10"
+    spec:
+      containerConcurrency: 80
+      timeoutSeconds: 300
+      containers:
+        - image: xcrafter88/zatca-app:latest
+          ports:
+            - name: http1
+              containerPort: 3000
+          env:
+            # Required: Database Configuration
+            - name: DATABASE_HOST
+              value: "" # Set via Cloud Console
+            - name: DATABASE_PORT
+              value: "5432"
+            - name: DATABASE_USERNAME
+              value: "" # Set via Cloud Console
+            - name: DATABASE_PASSWORD
+              value: "" # Set via Cloud Console (use Secret Manager)
+            - name: DATABASE_NAME
+              value: "zatca"
+
+            # Required: Security Configuration
+            - name: ENCRYPTION_KEY
+              value: "" # Set via Cloud Console (use Secret Manager)
+            - name: JWT_SECRET
+              value: "" # Set via Cloud Console (use Secret Manager)
+            - name: JWT_EXPIRES_IN
+              value: "24h"
+
+            # Admin Configuration
+            - name: ADMIN_USERNAME
+              value: "admin"
+            - name: ADMIN_PASSWORD_HASH
+              value: "" # Set via Cloud Console (use Secret Manager)
+
+            # Application Configuration
+            - name: NODE_ENV
+              value: "production"
+            - name: PORT
+              value: "3000"
+            - name: LOG_LEVEL
+              value: "info"
+
+            # ZATCA Configuration
+            - name: ZATCA_ENVIRONMENT
+              value: "sandbox"
+            - name: ZATCA_SANDBOX_URL
+              value: "https://gw-fatoora.zatca.gov.sa/e-invoicing/developer-portal"
+            - name: ZATCA_PRODUCTION_URL
+              value: "https://gw-fatoora.zatca.gov.sa/e-invoicing/core"
+            - name: ZATCA_DEBUG_MODE
+              value: "false"
+            - name: ENABLE_DEBUG_FILES
+              value: "false"
+
+          resources:
+            limits:
+              cpu: "1"
+              memory: 2Gi

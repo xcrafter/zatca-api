@@ -1,0 +1,57 @@
+services:
+  - type: web
+    name: zatca-api
+    runtime: docker
+    dockerfilePath: Dockerfile
+    dockerContext: .
+    plan: starter
+    region: oregon
+    healthCheckPath: /
+    envVars:
+      # Database Configuration (Required)
+      - key: DATABASE_HOST
+        sync: false
+      - key: DATABASE_PORT
+        value: 5432
+      - key: DATABASE_USERNAME
+        sync: false
+      - key: DATABASE_PASSWORD
+        sync: false
+      - key: DATABASE_NAME
+        sync: false
+
+      # Security Configuration (Auto-generated recommended)
+      - key: ENCRYPTION_KEY
+        generateValue: true
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+        sync: false
+      - key: JWT_EXPIRES_IN
+        value: 24h
+
+      # Admin Configuration
+      - key: ADMIN_USERNAME
+        value: admin
+      - key: ADMIN_PASSWORD_HASH
+        sync: false
+
+      # Application Configuration
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: LOG_LEVEL
+        value: info
+
+      # ZATCA Configuration
+      - key: ZATCA_ENVIRONMENT
+        value: sandbox
+      - key: ZATCA_SANDBOX_URL
+        value: https://gw-fatoora.zatca.gov.sa/e-invoicing/developer-portal
+      - key: ZATCA_PRODUCTION_URL
+        value: https://gw-fatoora.zatca.gov.sa/e-invoicing/core
+      - key: ZATCA_DEBUG_MODE
+        value: false
+      - key: ENABLE_DEBUG_FILES
+        value: false

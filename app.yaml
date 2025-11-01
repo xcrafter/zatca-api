@@ -1,0 +1,49 @@
+# Google Cloud Run configuration
+# This file is used for "Deploy to Cloud Run" button
+
+runtime: custom
+env: flex
+
+# Automatic scaling configuration
+automatic_scaling:
+  min_num_instances: 1
+  max_num_instances: 10
+  cool_down_period_sec: 120
+  cpu_utilization:
+    target_utilization: 0.6
+
+# Resource configuration
+resources:
+  cpu: 1
+  memory_gb: 2
+  disk_size_gb: 10
+
+# Environment variables
+# Note: Sensitive values should be set via Cloud Console or gcloud CLI
+env_variables:
+  NODE_ENV: "production"
+  PORT: "3000"
+  LOG_LEVEL: "info"
+  ZATCA_ENVIRONMENT: "sandbox"
+  ZATCA_SANDBOX_URL: "https://gw-fatoora.zatca.gov.sa/e-invoicing/developer-portal"
+  ZATCA_PRODUCTION_URL: "https://gw-fatoora.zatca.gov.sa/e-invoicing/core"
+  ZATCA_DEBUG_MODE: "false"
+  ENABLE_DEBUG_FILES: "false"
+  DATABASE_PORT: "5432"
+  JWT_EXPIRES_IN: "24h"
+
+# Health check
+liveness_check:
+  path: "/"
+  check_interval_sec: 30
+  timeout_sec: 10
+  failure_threshold: 3
+  success_threshold: 1
+
+readiness_check:
+  path: "/"
+  check_interval_sec: 30
+  timeout_sec: 10
+  failure_threshold: 3
+  success_threshold: 1
+  app_start_timeout_sec: 300

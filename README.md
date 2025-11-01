@@ -4,6 +4,7 @@ Complete guide to deploy and run the ZATCA API Service using Docker from Docker 
 
 ## Table of Contents
 
+- [One-Click Deploy](#one-click-deploy)
 - [Quick Start](#quick-start)
 - [Prerequisites](#prerequisites)
 - [Environment Setup](#environment-setup)
@@ -22,6 +23,37 @@ This application requires a **Remote PostgreSQL** database connection:
 - ✅ Production-ready (AWS RDS, Azure Database, Google Cloud SQL, etc.)
 - ✅ Supports centralized database for multiple app instances
 - ✅ Better security and scalability
+
+---
+
+## One-Click Deploy
+
+Deploy quickly to cloud platforms with a single click:
+
+### Deploy to Render
+
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/YOUR_GITHUB_USERNAME/zatca-api)
+
+**Note:** You'll need to provide your PostgreSQL database credentials during setup. Render will automatically generate secure keys for `ENCRYPTION_KEY` and `JWT_SECRET`.
+
+### Deploy to Google Cloud Run
+
+[![Run on Google Cloud](https://deploy.cloud.run/button.svg)](https://deploy.cloud.run/?git_repo=https://github.com/YOUR_GITHUB_USERNAME/zatca-api)
+
+**Note:** After clicking the button:
+
+1. Select your Google Cloud project
+2. The app will deploy using the `cloudrun.yaml` configuration
+3. Set your database credentials and secrets via Cloud Console or Secret Manager
+4. The service will be accessible via a Cloud Run URL
+
+**Prerequisites for Cloud Deploy:**
+
+- A remote PostgreSQL database (AWS RDS, Google Cloud SQL, Azure Database, etc.)
+- Database should be accessible from the cloud platform
+- Admin password must be hashed (use bcrypt with 10 rounds)
+
+**Alternative:** For more control, follow the [Quick Start](#quick-start) guide below for local deployment or custom cloud setup.
 
 ---
 
