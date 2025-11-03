@@ -1,7 +1,7 @@
 # GitHub Pages Configuration
 title: ZATCA API
 description: Enterprise-Grade E-Invoicing Compliance Made Simple
-baseurl: "/zatca-api"
+baseurl: ""
 url: "https://xcrafter.github.io/zatca-api"
 
 # Build settings
