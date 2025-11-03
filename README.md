@@ -31,8 +31,6 @@ This application requires a **Remote PostgreSQL** database connection:
 Deploy quickly to cloud platforms:
 
 [![Run on Google Cloud](https://deploy.cloud.run/button.svg)](https://deploy.cloud.run/?git_repo=https://github.com/xcrafter/zatca-api)
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/xcrafter/zatca-api)
-[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/new/template?template=https://github.com/xcrafter/zatca-api)
 
 **Note:** You'll need a remote PostgreSQL database ready before deployment. For local deployment or custom setup, follow the [Quick Start](#quick-start) guide below.
 
