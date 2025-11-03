@@ -7,8 +7,901 @@
       name="description"
       content="ZATCA API - Plug and play API solution for ERP systems to offer ZATCA compliant e-invoicing"
     />
-    <title>ZATCA API - Enterprise E-Invoicing Solution</title>
-    <link rel="stylesheet" href="/zatca-api/styles.css" />
+    <title>ZATCA E-Invoicing API For ERP Systems</title>
+    <style>
+      :root {
+        --primary-color: #3b82f6;
+        --primary-dark: #2563eb;
+        --primary-light: #60a5fa;
+        --secondary-color: #8b5cf6;
+        --accent-color: #10b981;
+        --accent-orange: #f59e0b;
+        --bg-color: #ffffff;
+        --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --text-color: #0f172a;
+        --text-light: #475569;
+        --text-lighter: #94a3b8;
+        --border-color: #e2e8f0;
+        --card-bg: #ffffff;
+        --section-bg: #f8fafc;
+        --code-bg: #1e293b;
+        --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+        --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+        --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.12);
+        --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.15);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, "Helvetica Neue", Arial, sans-serif;
+        line-height: 1.7;
+        color: var(--text-color);
+        background-color: var(--bg-color);
+        overflow-x: hidden;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 4rem 0 5rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      header::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(
+            circle at 20% 50%,
+            rgba(255, 255, 255, 0.1) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 80% 80%,
+            rgba(255, 255, 255, 0.1) 0%,
+            transparent 50%
+          );
+        pointer-events: none;
+      }
+
+      .header-content {
+        position: relative;
+        z-index: 1;
+      }
+
+      header h1 {
+        font-size: 4rem;
+        font-weight: 800;
+        margin-bottom: 0.75rem;
+        letter-spacing: -0.02em;
+        text-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .subtitle {
+        font-size: 1.5rem;
+        opacity: 0.95;
+        font-weight: 400;
+        letter-spacing: 0.01em;
+      }
+
+      .hero {
+        text-align: center;
+        padding: 5rem 0;
+        background: linear-gradient(
+          to bottom,
+          #ffffff 0%,
+          var(--section-bg) 100%
+        );
+        position: relative;
+      }
+
+      .hero h2 {
+        font-size: 3rem;
+        font-weight: 800;
+        margin-bottom: 1.5rem;
+        color: var(--text-color);
+        letter-spacing: -0.02em;
+        line-height: 1.2;
+      }
+
+      .hero-description {
+        font-size: 1.375rem;
+        color: var(--text-light);
+        margin-bottom: 2.5rem;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+        font-weight: 400;
+      }
+
+      .cta-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 2rem;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 1rem 2.25rem;
+        border-radius: 0.75rem;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        font-size: 1.0625rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: left 0.5s;
+      }
+
+      .btn:hover::before {
+        left: 100%;
+      }
+
+      .btn-primary {
+        background: linear-gradient(
+          135deg,
+          var(--primary-color) 0%,
+          var(--primary-dark) 100%
+        );
+        color: white;
+        box-shadow: 0 4px 14px rgba(59, 130, 246, 0.4);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 24px rgba(59, 130, 246, 0.5);
+      }
+
+      .btn-secondary {
+        background-color: white;
+        color: var(--primary-color);
+        border: 2px solid var(--primary-color);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .btn-secondary:hover {
+        background-color: var(--primary-color);
+        color: white;
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-md);
+      }
+
+      .stats {
+        padding: 0 0 4rem;
+        background: linear-gradient(
+          to bottom,
+          #ffffff 0%,
+          var(--section-bg) 100%
+        );
+      }
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        margin-top: -3rem;
+      }
+
+      .stat-card {
+        background: white;
+        padding: 2.5rem 1.5rem;
+        border-radius: 1.25rem;
+        text-align: center;
+        box-shadow: var(--shadow-lg);
+        border: 2px solid var(--border-color);
+        transition: all 0.3s ease;
+      }
+
+      .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-xl);
+        border-color: var(--primary-color);
+      }
+
+      .stat-number {
+        font-size: 3rem;
+        font-weight: 800;
+        background: linear-gradient(
+          135deg,
+          var(--primary-color),
+          var(--secondary-color)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 0.5rem;
+      }
+
+      .stat-label {
+        color: var(--text-light);
+        font-size: 1rem;
+        font-weight: 600;
+      }
+
+      .video-demo {
+        padding: 6rem 0;
+        background: var(--section-bg);
+        text-align: center;
+      }
+
+      .video-demo h2 {
+        font-size: 2.75rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+        color: var(--text-color);
+        letter-spacing: -0.02em;
+      }
+
+      .video-demo .section-description {
+        font-size: 1.25rem;
+        color: var(--text-light);
+        margin-bottom: 3rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .video-container {
+        position: relative;
+        padding-bottom: 56.25%;
+        height: 0;
+        overflow: hidden;
+        max-width: 1000px;
+        margin: 0 auto;
+        border-radius: 1.25rem;
+        box-shadow: var(--shadow-xl);
+        background: var(--code-bg);
+      }
+
+      .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 1.25rem;
+      }
+
+      .video-note {
+        margin-top: 2rem;
+        color: var(--text-light);
+        font-size: 1.0625rem;
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 4rem;
+      }
+
+      .section-tag {
+        display: inline-block;
+        padding: 0.5rem 1.25rem;
+        background: linear-gradient(
+          135deg,
+          var(--primary-light),
+          var(--primary-color)
+        );
+        color: white;
+        border-radius: 2rem;
+        font-size: 0.875rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 1rem;
+      }
+
+      .section-header h2 {
+        font-size: 2.75rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+        color: var(--text-color);
+        letter-spacing: -0.02em;
+      }
+
+      .section-subtitle {
+        font-size: 1.25rem;
+        color: var(--text-light);
+        max-width: 700px;
+        margin: 0 auto;
+      }
+
+      .features {
+        padding: 6rem 0;
+        background-color: white;
+      }
+
+      .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+        gap: 2.5rem;
+        margin-top: 3rem;
+      }
+
+      .feature-card {
+        background: var(--card-bg);
+        padding: 2.5rem;
+        border-radius: 1.25rem;
+        border: 2px solid var(--border-color);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .feature-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: linear-gradient(
+          90deg,
+          var(--primary-color),
+          var(--secondary-color)
+        );
+        transform: scaleX(0);
+        transition: transform 0.4s ease;
+      }
+
+      .feature-card:hover::before {
+        transform: scaleX(1);
+      }
+
+      .feature-card:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--shadow-lg);
+        border-color: var(--primary-color);
+      }
+
+      .feature-icon {
+        font-size: 3.5rem;
+        margin-bottom: 1.25rem;
+        display: inline-block;
+        transition: transform 0.4s ease;
+      }
+
+      .feature-card:hover .feature-icon {
+        transform: scale(1.1) rotate(5deg);
+      }
+
+      .feature-card h3 {
+        font-size: 1.625rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        color: var(--text-color);
+      }
+
+      .feature-card p {
+        color: var(--text-light);
+        line-height: 1.75;
+        font-size: 1.0625rem;
+      }
+
+      .feature-footer {
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--border-color);
+      }
+
+      .feature-tag {
+        display: inline-block;
+        padding: 0.375rem 0.875rem;
+        background: linear-gradient(
+          135deg,
+          var(--section-bg),
+          var(--border-color)
+        );
+        color: var(--primary-color);
+        border-radius: 1.5rem;
+        font-size: 0.8125rem;
+        font-weight: 600;
+      }
+
+      .technical-details {
+        padding: 6rem 0;
+        background: var(--section-bg);
+      }
+
+      .tech-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+      }
+
+      .tech-item {
+        background: white;
+        padding: 2rem;
+        border-radius: 1.25rem;
+        border: 2px solid var(--border-color);
+        transition: all 0.3s ease;
+        box-shadow: var(--shadow-sm);
+      }
+
+      .tech-item:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-md);
+        border-color: var(--primary-color);
+      }
+
+      .tech-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        display: inline-block;
+      }
+
+      .tech-item h4 {
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin-bottom: 0.75rem;
+        color: var(--text-color);
+      }
+
+      .tech-item p {
+        color: var(--text-light);
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+
+      .getting-started {
+        padding: 6rem 0;
+        background: white;
+      }
+
+      .quick-start-wrapper {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 2.5rem;
+        align-items: start;
+      }
+
+      .code-block {
+        background: var(--code-bg);
+        border-radius: 1.25rem;
+        padding: 0;
+        overflow: hidden;
+        box-shadow: var(--shadow-lg);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .code-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 1.5rem;
+        background: rgba(255, 255, 255, 0.05);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .code-title {
+        color: #94a3b8;
+        font-size: 0.875rem;
+        font-weight: 600;
+      }
+
+      .code-lang {
+        color: var(--accent-color);
+        font-size: 0.875rem;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+
+      .code-block pre {
+        padding: 2rem 1.5rem;
+        margin: 0;
+        overflow-x: auto;
+      }
+
+      .code-block code {
+        color: #e2e8f0;
+        font-family: "JetBrains Mono", "Fira Code", "Monaco", "Menlo", monospace;
+        font-size: 0.9375rem;
+        line-height: 1.8;
+      }
+
+      .requirements-box {
+        background: linear-gradient(135deg, var(--section-bg) 0%, white 100%);
+        padding: 2.5rem;
+        border-radius: 1.25rem;
+        border: 2px solid var(--border-color);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .requirements-box h3 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        color: var(--text-color);
+      }
+
+      .requirements-box ul {
+        list-style: none;
+        margin-bottom: 2rem;
+      }
+
+      .requirements-box li {
+        padding: 0.75rem 0;
+        color: var(--text-light);
+        font-size: 1.0625rem;
+        position: relative;
+        padding-left: 2rem;
+      }
+
+      .requirements-box li:before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: var(--accent-color);
+        font-weight: 700;
+        font-size: 1.25rem;
+      }
+
+      .requirements-box .btn {
+        width: 100%;
+      }
+
+      .contact {
+        padding: 6rem 0;
+        background: var(--section-bg);
+      }
+
+      .contact-info {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+        gap: 2.5rem;
+        margin-bottom: 3rem;
+      }
+
+      .contact-card {
+        background: white;
+        padding: 2.5rem;
+        border-radius: 1.25rem;
+        border: 2px solid var(--border-color);
+        text-align: center;
+        transition: all 0.4s ease;
+        box-shadow: var(--shadow-sm);
+      }
+
+      .contact-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-md);
+        border-color: var(--primary-color);
+      }
+
+      .contact-icon {
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+        display: inline-block;
+      }
+
+      .contact-card h3 {
+        font-size: 1.75rem;
+        font-weight: 700;
+        margin-bottom: 1.25rem;
+        color: var(--text-color);
+      }
+
+      .contact-card p {
+        color: var(--text-light);
+        margin-bottom: 1.25rem;
+        font-size: 1.0625rem;
+      }
+
+      .contact-card ul {
+        list-style: none;
+        margin: 2rem 0;
+        text-align: left;
+      }
+
+      .contact-card li {
+        padding: 0.75rem 0;
+        color: var(--text-light);
+        position: relative;
+        padding-left: 2rem;
+        font-size: 1.0625rem;
+      }
+
+      .contact-card li:before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: var(--accent-color);
+        font-weight: 700;
+        font-size: 1.25rem;
+      }
+
+      .contact-card .btn {
+        margin-top: 1.5rem;
+        width: 100%;
+        max-width: 280px;
+      }
+
+      .github-stats {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        margin: 2rem 0;
+        padding: 1.5rem;
+        background: var(--section-bg);
+        border-radius: 0.75rem;
+      }
+
+      .github-stat {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-size: 1rem;
+        color: var(--text-light);
+      }
+
+      .stat-icon {
+        font-size: 1.25rem;
+      }
+
+      .email-contact {
+        text-align: center;
+        margin-top: 3.5rem;
+        padding: 2.5rem;
+        background: white;
+        border-radius: 1.25rem;
+        border: 2px solid var(--border-color);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .email-contact p {
+        font-size: 1.25rem;
+      }
+
+      .email-contact a {
+        color: var(--primary-color);
+        text-decoration: none;
+        font-weight: 700;
+        border-bottom: 2px solid transparent;
+        transition: border-color 0.3s;
+      }
+
+      .email-contact a:hover {
+        border-bottom-color: var(--primary-color);
+      }
+
+      .disclaimer {
+        padding: 3rem 0;
+        background: linear-gradient(135deg, #fff3cd 0%, #fff8e1 100%);
+        border-top: 3px solid #ffc107;
+        border-bottom: 3px solid #ffc107;
+      }
+
+      .disclaimer-content {
+        max-width: 900px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .disclaimer-content h3 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        color: #856404;
+      }
+
+      .disclaimer-content p {
+        font-size: 1.0625rem;
+        line-height: 1.8;
+        color: #856404;
+        margin-bottom: 1rem;
+      }
+
+      .disclaimer-content strong {
+        font-weight: 700;
+        color: #664d03;
+      }
+
+      .disclaimer-note {
+        font-size: 1rem;
+        font-style: italic;
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+        border-top: 2px solid rgba(255, 193, 7, 0.3);
+      }
+
+      footer {
+        background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+        color: white;
+        padding: 4rem 0 2rem;
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 3rem;
+        margin-bottom: 3rem;
+      }
+
+      .footer-section h4 {
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        color: white;
+      }
+
+      .footer-section p {
+        color: #94a3b8;
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+
+      .footer-links {
+        list-style: none;
+      }
+
+      .footer-links li {
+        margin-bottom: 0.75rem;
+      }
+
+      .footer-links a {
+        color: #94a3b8;
+        text-decoration: none;
+        transition: color 0.3s;
+        font-size: 1rem;
+      }
+
+      .footer-links a:hover {
+        color: white;
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .footer-bottom p {
+        color: #94a3b8;
+        font-size: 0.9375rem;
+      }
+
+      @media (max-width: 968px) {
+        .quick-start-wrapper {
+          grid-template-columns: 1fr;
+        }
+        .stats-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 768px) {
+        header h1 {
+          font-size: 2.5rem;
+        }
+        .subtitle {
+          font-size: 1.125rem;
+        }
+        .hero {
+          padding: 3rem 0;
+        }
+        .hero h2 {
+          font-size: 2rem;
+        }
+        .hero-description {
+          font-size: 1.125rem;
+        }
+        .section-header h2 {
+          font-size: 2rem;
+        }
+        .section-subtitle {
+          font-size: 1.125rem;
+        }
+        .feature-grid,
+        .contact-info,
+        .tech-grid {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+        .cta-buttons {
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .btn {
+          width: 100%;
+          max-width: 100%;
+        }
+        .code-block pre {
+          padding: 1.5rem;
+        }
+        .code-block code {
+          font-size: 0.875rem;
+        }
+        .features,
+        .getting-started,
+        .contact,
+        .video-demo,
+        .technical-details {
+          padding: 4rem 0;
+        }
+        .stats {
+          padding: 0 0 3rem;
+        }
+        .stats-grid {
+          margin-top: -2rem;
+          grid-template-columns: 1fr;
+        }
+        .container {
+          padding: 0 20px;
+        }
+        .footer-content {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+        .disclaimer {
+          padding: 2rem 0;
+        }
+        .disclaimer-content h3 {
+          font-size: 1.25rem;
+        }
+        .disclaimer-content p {
+          font-size: 1rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        header h1 {
+          font-size: 2rem;
+        }
+        .hero h2 {
+          font-size: 1.625rem;
+        }
+        .section-header h2 {
+          font-size: 1.625rem;
+        }
+        .feature-icon,
+        .contact-icon {
+          font-size: 2.75rem;
+        }
+        .feature-card,
+        .contact-card {
+          padding: 1.75rem;
+        }
+        .stat-number {
+          font-size: 2.5rem;
+        }
+        .tech-icon {
+          font-size: 2rem;
+        }
+      }
+    </style>
     <script type="text/javascript">
       (function (c, l, a, r, i, t, y) {
         c[a] =
@@ -28,7 +921,7 @@
     <header>
       <div class="container">
         <div class="header-content">
-          <h1>ZATCA API</h1>
+          <h1>ZATCA E-Invoicing API For ERP Systems</h1>
           <p class="subtitle">
             Enterprise-Grade E-Invoicing Compliance Made Simple
           </p>
@@ -123,7 +1016,10 @@
           <div class="section-header">
             <span class="section-tag">Why Choose Us</span>
             <h2>Platform Capabilities</h2>
-            <p class="section-subtitle">Everything you need to implement ZATCA compliance in your ERP system</p>
+            <p class="section-subtitle">
+              Everything you need to implement ZATCA compliance in your ERP
+              system
+            </p>
           </div>
 
           <div class="feature-grid">
@@ -207,13 +1103,19 @@
           <div class="section-header">
             <span class="section-tag">Technical Stack</span>
             <h2>Built for Enterprise</h2>
-            <p class="section-subtitle">Modern, scalable technology stack designed for production environments</p>
+            <p class="section-subtitle">
+              Modern, scalable technology stack designed for production
+              environments
+            </p>
           </div>
           <div class="tech-grid">
             <div class="tech-item">
               <div class="tech-icon">🌐</div>
               <h4>Multi-Environment Support</h4>
-              <p>Sandbox, Simulation, and Production environments for testing and deployment</p>
+              <p>
+                Sandbox, Simulation, and Production environments for testing and
+                deployment
+              </p>
             </div>
             <div class="tech-item">
               <div class="tech-icon">🔌</div>
@@ -233,12 +1135,17 @@
             <div class="tech-item">
               <div class="tech-icon">🗄️</div>
               <h4>PostgreSQL Database</h4>
-              <p>Reliable data persistence with support for managed database services</p>
+              <p>
+                Reliable data persistence with support for managed database
+                services
+              </p>
             </div>
             <div class="tech-item">
               <div class="tech-icon">🔐</div>
               <h4>Secure by Default</h4>
-              <p>JWT authentication, encryption, and enterprise security features</p>
+              <p>
+                JWT authentication, encryption, and enterprise security features
+              </p>
             </div>
           </div>
         </div>
@@ -249,7 +1156,9 @@
           <div class="section-header">
             <span class="section-tag">Get Started</span>
             <h2>Quick Start</h2>
-            <p class="section-subtitle">Get up and running in minutes with our simple setup process</p>
+            <p class="section-subtitle">
+              Get up and running in minutes with our simple setup process
+            </p>
           </div>
 
           <div class="quick-start-wrapper">
@@ -281,7 +1190,12 @@ docker-compose up -d
                 <li>PostgreSQL 12+</li>
                 <li>2GB RAM minimum</li>
               </ul>
-              <a href="https://github.com/xcrafter/zatca-api/blob/main/readme.md" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://github.com/xcrafter/zatca-api/blob/main/readme.md"
+                class="btn btn-primary"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 View Full Documentation
               </a>
             </div>
@@ -294,7 +1208,9 @@ docker-compose up -d
           <div class="section-header">
             <span class="section-tag">Get In Touch</span>
             <h2>Support & Contact</h2>
-            <p class="section-subtitle">Need help with integration, deployment, or custom requirements?</p>
+            <p class="section-subtitle">
+              Need help with integration, deployment, or custom requirements?
+            </p>
           </div>
 
           <div class="contact-info">
@@ -356,6 +1272,24 @@ docker-compose up -d
           </div>
         </div>
       </section>
+
+      <section class="disclaimer">
+        <div class="container">
+          <div class="disclaimer-content">
+            <h3>⚠️ Important Disclaimer</h3>
+            <p>
+              This project is <strong>not directly affiliated with or authorized by ZATCA</strong> (Zakat, Tax and Customs Authority).
+              This is an independent API wrapper built on top of the official ZATCA e-invoicing API services.
+              It has been created specifically for ERP solution providers who want to offer ZATCA-compliant
+              e-invoicing services to their customers through simple API integration.
+            </p>
+            <p class="disclaimer-note">
+              All core compliance functionality is provided by ZATCA's official API endpoints.
+              This wrapper simplifies the integration process for developers and businesses.
+            </p>
+          </div>
+        </div>
+      </section>
     </main>
 
     <footer>
@@ -368,16 +1302,44 @@ docker-compose up -d
           <div class="footer-section">
             <h4>Quick Links</h4>
             <ul class="footer-links">
-              <li><a href="https://github.com/xcrafter/zatca-api" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-              <li><a href="https://github.com/xcrafter/zatca-api/blob/main/readme.md" target="_blank" rel="noopener noreferrer">Documentation</a></li>
-              <li><a href="https://rcs9upse5t.us-east-1.awsapprunner.com/api-docs" target="_blank" rel="noopener noreferrer">API Docs</a></li>
+              <li>
+                <a
+                  href="https://github.com/xcrafter/zatca-api"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >GitHub</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://github.com/xcrafter/zatca-api/blob/main/readme.md"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Documentation</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://rcs9upse5t.us-east-1.awsapprunner.com/api-docs"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >API Docs</a
+                >
+              </li>
             </ul>
           </div>
           <div class="footer-section">
             <h4>Support</h4>
             <ul class="footer-links">
               <li><a href="mailto:manzoorsamad.in@gmail.com">Contact Us</a></li>
-              <li><a href="https://github.com/xcrafter/zatca-api/issues" target="_blank" rel="noopener noreferrer">Report Issues</a></li>
+              <li>
+                <a
+                  href="https://github.com/xcrafter/zatca-api/issues"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Report Issues</a
+                >
+              </li>
             </ul>
           </div>
         </div>

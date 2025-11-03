@@ -2,6 +2,14 @@
 
 Complete guide to deploy and run the ZATCA API Service using Docker from Docker Hub.
 
+> **⚠️ Important Disclaimer**
+>
+> This project is **not directly affiliated with or authorized by ZATCA** (Zakat, Tax and Customs Authority). This is an independent API wrapper built on top of the official ZATCA e-invoicing API services. It has been created specifically for ERP solution providers who want to offer ZATCA-compliant e-invoicing services to their customers through simple API integration.
+>
+> All core compliance functionality is provided by ZATCA's official API endpoints. This wrapper simplifies the integration process for developers and businesses.
+
+---
+
 ## Try It Out
 
 Experience the platform yourself:
