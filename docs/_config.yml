@@ -1,0 +1,15 @@
+# GitHub Pages Configuration
+title: ZATCA API
+description: Enterprise-Grade E-Invoicing Compliance Made Simple
+baseurl: "/zatca-api"
+url: "https://xcrafter.github.io/zatca-api"
+
+# Build settings
+markdown: kramdown
+theme: null
+
+# Exclude from processing
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock

@@ -2,8 +2,29 @@
 
 Complete guide to deploy and run the ZATCA API Service using Docker from Docker Hub.
 
+## Try It Out
+
+Experience the platform yourself:
+
+- **[Live Platform Demo](https://rcs9upse5t.us-east-1.awsapprunner.com/ui/login)** - Try the web interface and see the features in action
+- **[API Documentation](https://rcs9upse5t.us-east-1.awsapprunner.com/api-docs)** - Explore the complete API reference with interactive Swagger UI
+
+---
+
+## Video Demo
+
+See the platform in action and learn how to integrate it with your ERP system:
+
+[![ZATCA API Platform Demo](https://img.youtube.com/vi/B9VKLNSTplU/maxresdefault.jpg)](https://www.youtube.com/watch?v=B9VKLNSTplU)
+
+**Click to watch:** Setup, configuration, and integration walkthrough
+
+---
+
 ## Table of Contents
 
+- [Try It Out](#try-it-out)
+- [Video Demo](#video-demo)
 - [One-Click Deploy](#one-click-deploy)
 - [Quick Start](#quick-start)
 - [Prerequisites](#prerequisites)
